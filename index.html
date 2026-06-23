@@ -1,0 +1,330 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login Greenhouse IoT</title>
+
+    <style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #f3f6f9;
+        overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+        background: white;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 60px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        flex-shrink: 0;
+    }
+
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .logo-area img {
+        height: 65px;
+    }
+
+    .title {
+        font-size: 22px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .title .blue  { color: #4169e1; }
+    .title .green { color: #18a558; }
+
+    .status {
+        background: #dff5e8;
+        padding: 10px 22px;
+        border-radius: 50px;
+        color: #18a558;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        background: #18c97f;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    /* ── MAIN / LOGIN CARD ── */
+    .main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 16px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 420px;
+        background: white;
+        padding: 36px 40px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .iot-icon {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    .iot-icon img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        display: block;
+        margin: auto;
+        border-radius: 16px;
+    }
+
+    .login-card h2 {
+        text-align: center;
+        color: #18a558;
+        font-size: 1.35rem;
+        margin-bottom: 6px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 26px;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+        color: #444;
+        font-size: 14px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 13px 14px;
+        border: 2px solid #e5e5e5;
+        border-radius: 12px;
+        font-size: 15px;
+        transition: border-color 0.3s;
+        -webkit-appearance: none;
+    }
+
+    .input-group input:focus {
+        outline: none;
+        border-color: #18a558;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: #18a558;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        margin-top: 4px;
+    }
+
+    .btn:hover   { background: #148847; }
+    .btn:active  { background: #0f6e39; }
+
+    #error-message {
+        color: red;
+        text-align: center;
+        margin-top: 12px;
+        margin-bottom: 18px;
+        font-size: 13.5px;
+        min-height: 20px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+        height: 70px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #555;
+        font-size: 13px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        text-align: center;
+        padding: 0 16px;
+        flex-shrink: 0;
+    }
+
+    .footer span {
+        color: #4169e1;
+        font-weight: bold;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+
+        .header {
+            height: auto;
+            padding: 14px 16px;
+            flex-direction: row;          /* tetap satu baris */
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .title {
+            font-size: 14px;              /* cukup kecil agar muat satu baris */
+            line-height: 1.3;
+        }
+
+        .logo-area img {
+            height: 40px;
+        }
+
+        .status {
+            padding: 7px 12px;
+            font-size: 11px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+        }
+
+        /* Card full width dengan padding lebih kecil */
+        .login-card {
+            padding: 26px 20px 30px;
+            border-radius: 20px;
+        }
+
+        .iot-icon img {
+            width: 72px;
+            height: 72px;
+        }
+
+        .login-card h2 {
+            font-size: 1.1rem;
+        }
+
+        .subtitle {
+            font-size: 12.5px;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            font-size: 16px;   /* ≥16px cegah zoom otomatis di iOS */
+            padding: 12px 13px;
+        }
+
+        .btn {
+            font-size: 14px;
+            padding: 13px;
+        }
+
+        .footer {
+            height: auto;
+            padding: 14px 16px;
+            font-size: 11.5px;
+            line-height: 1.6;
+        }
+    }
+
+    /* Extra kecil ≤380px */
+    @media (max-width: 380px) {
+        .title { font-size: 12px; }
+        .logo-area img { height: 34px; }
+        .status { display: none; }   /* sembunyikan badge di layar sangat kecil */
+    }
+
+    </style>
+    </head>
+
+    <body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-area">
+            <div class="title">
+                <span class="blue">PADMAWIDYA </span><span class="green">GREENHOUSE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="main">
+        <div class="login-card">
+
+            <div class="iot-icon">
+                <img src="logo.jpeg" alt="Logo Greenhouse">
+            </div>
+
+            <h2>Login Greenhouse IoT</h2>
+
+            <div class="subtitle">
+                Silakan masuk untuk mengakses sistem monitoring greenhouse
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Masukkan email" autocomplete="email">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Masukkan password" autocomplete="current-password">
+            </div>
+
+            <p id="error-message"></p>
+
+            <button class="btn" onclick="login()">
+                MASUK KE SISTEM
+            </button>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        &lt;/&gt; Padmawidya GreenHouse IoT System v1.0 |
+        Created with <span>&nbsp;ABIM</span>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+
+    </body>
+    </html>
